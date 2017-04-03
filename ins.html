@@ -18,7 +18,6 @@
 
     <!-- Custom styles for this template -->
     <link href="dist/css/starter-template.css" rel="stylesheet">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   </head>
 
@@ -33,12 +32,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Cagnotte</a>
+          <a class="navbar-brand" href="#">INS/MV</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Cagnotte</a></li>
-            <li><a href="ins.html">INS</a></li>
+            <li class="active"><a href="index.html">Cagnotte</a></li>
+            <li class="active"><a href="#">INS</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -47,8 +46,10 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Cagnotte</h1>
-        <div id="table_div"></div>
+        <ul>
+			<li><a href="ins/aide_creation_demon.pdf">Aide à la création de démon</a></li>
+			<li><a href="ins/fiche_perso_ins.pdf">Fiche démon</a></li>
+		</ul>
       </div>
 
     </div><!-- /.container -->
@@ -63,38 +64,5 @@
     <script src="dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script type="text/javascript">
-    $( document ).ready(function() {
-        console.log( "ready!" );
-        google.charts.load('current', {'packages':['table']});
-
-        $.get( "https://sheets.googleapis.com/v4/spreadsheets/1_vdFopcmuT_sKOfRr_zRDbxwyT5ZH4anbLiEvapFVW8/values/Sheet1!S4:T9?key=AIzaSyAWaQwx4HZzAjhY5fRWYGjf68M2NrH3UFA", function( response ) {
-          var rows = []
-          var values = response.values;
-          for (var i = 0; i < values.length; i++) {
-            var name = values[i][0];
-            var value = values[i][1];
-            rows.push([name,value]);
-          };
-          rows.sort(function(a,b){
-            return a[1] - b[1];
-          })
-          drawTable(rows)
-      });
-    });
-    
-      
-
-    function drawTable(rows) {
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Nom');
-      data.addColumn('string', 'Encours');
-      data.addRows(rows);
-
-      var table = new google.visualization.Table(document.getElementById('table_div'));
-
-      table.draw(data, {showRowNumber: false, width: '200px', height: '200px'});
-    }
-  </script>
   </body>
 </html>
