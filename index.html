@@ -49,6 +49,7 @@
 
       <div class="starter-template">
         <h1>Cagnotte</h1>
+        <h2 id="whosturn"></h2>
         <div id="table_div"></div>
         <br/>
         <a href="https://goo.gl/forms/Mx8RHvEDK5OqUV9F3" class="btn btn-primary">Saisie cagnotte</a>
@@ -74,15 +75,22 @@
         $.get( "https://sheets.googleapis.com/v4/spreadsheets/1_vdFopcmuT_sKOfRr_zRDbxwyT5ZH4anbLiEvapFVW8/values/Cagnotte!S4:T9?key=AIzaSyAWaQwx4HZzAjhY5fRWYGjf68M2NrH3UFA", function( response ) {
           var rows = []
           var values = response.values;
+          var min = 50;
+          var minName = "";
           for (var i = 0; i < values.length; i++) {
             var name = values[i][0];
             var value = values[i][1];
+            if(min > value) {
+              min = value;
+              minName = name;
+            }
             rows.push([name,value]);
           };
           rows.sort(function(a,b){
             return a[1] - b[1];
           })
-          drawTable(rows)
+          drawTable(rows);
+          $("#whosturn").text(minName);
       });
     });
     
